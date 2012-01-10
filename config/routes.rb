@@ -6,7 +6,7 @@ Stampson::Application.routes.draw do
   get "logout" => "sessions#destroy", :as => "logout"
   resources :sessions, :only => [:create]
 
-  resources :users, :except => [:show]
+  #resources :users, :except => [:show]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
