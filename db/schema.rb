@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111228055505) do
+ActiveRecord::Schema.define(:version => 20120111064344) do
+
+  create_table "countries", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "countries", ["name"], :name => "index_countries_on_name", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email",                                              :null => false
