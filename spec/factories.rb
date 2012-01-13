@@ -10,3 +10,9 @@ end
 Factory.define :country do |country|
   country.name "Test Country"
 end
+
+Factory.define :item do |item|
+  item.scott_number "100"
+  item.description "Test Item"
+  item.association :country
+end

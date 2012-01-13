@@ -38,7 +38,20 @@ describe Item do
       good_item = Item.new(@attr.merge(:description => "A different item", :country_id => country2.id))
       good_item.should be_valid
     end
+  end
+  
+  describe "country association" do
+    before(:each) do
+      @item = Factory(:item, :country => @country)
+    end
     
+    it "should have a 'country' attribute" do
+      @item.should respond_to(:country)
+    end
+    
+    it "should have the right country" do
+      @item.country.should == @country
+    end
   end
   
 end
