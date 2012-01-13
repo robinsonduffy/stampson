@@ -6,7 +6,7 @@ describe Item do
     @attr = {:scott_number => "100", :description => "A Test Item", :country_id => @country.id }
   end
   
-  it "should create a new user given valid attributes" do
+  it "should create a new item given valid attributes" do
     Item.create!(@attr)
   end
   

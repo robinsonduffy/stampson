@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120111070158) do
+ActiveRecord::Schema.define(:version => 20120113043144) do
 
   create_table "countries", :force => true do |t|
     t.string   "name"
@@ -30,6 +30,16 @@ ActiveRecord::Schema.define(:version => 20120111070158) do
   end
 
   add_index "items", ["scott_number", "country_id"], :name => "index_items_on_scott_number_and_country_id", :unique => true
+
+  create_table "prices", :force => true do |t|
+    t.string   "condition"
+    t.decimal  "price",      :precision => 8, :scale => 2
+    t.integer  "item_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "prices", ["item_id", "condition"], :name => "index_prices_on_item_id_and_condition", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email",                                              :null => false
