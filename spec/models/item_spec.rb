@@ -54,4 +54,23 @@ describe Item do
     end
   end
   
+  describe "price association" do
+    before(:each) do
+      @item = Factory(:item, :country => @country)
+      @price1 = Factory(:price, :price => 1.99, :condition => 'A', :item => @item)
+      @price2 = Factory(:price, :price => 0.99, :condition => 'B', :item => @item)
+      @price3 = Factory(:price, :price => 2.99, :condition => 'C', :item => @item)
+      @price4 = Factory(:price, :price => 1.13, :condition => 'D', :item => @item)
+      @price5 = Factory(:price, :price => 1.30, :condition => 'E', :item => @item)
+    end
+    
+    it "should have a prices attribute" do
+      @item.should respond_to(:prices)
+    end
+    
+    it "should return the right prices in the right order" do
+      @item.prices.should == [@price3, @price1, @price5, @price4, @price2]
+    end
+  end
+  
 end

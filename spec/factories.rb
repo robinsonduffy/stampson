@@ -16,3 +16,9 @@ Factory.define :item do |item|
   item.description "Test Item"
   item.association :country
 end
+
+Factory.define :price do |price|
+  price.condition "MNH"
+  price.price 1.99
+  price.association :item
+end

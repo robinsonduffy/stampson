@@ -15,5 +15,9 @@ class Price < ActiveRecord::Base
   
   validates :item_id, :presence => true,
                       :actual_item => true
+                      
+  belongs_to :item
+  
+  default_scope :order => 'prices.price DESC'
   
 end

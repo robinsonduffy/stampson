@@ -16,6 +16,8 @@ class Item < ActiveRecord::Base
                          
   belongs_to :country
   
+  has_many :prices, :dependent => :destroy
+  
   default_scope :order => "SUBSTR(items.scott_number,1,1) NOT IN ('1','2','3','4','5','6','7','8','9'), items.scott_number + 0 ASC, LENGTH(items.scott_number), SUBSTR(items.scott_number,1,1)"
   
 end

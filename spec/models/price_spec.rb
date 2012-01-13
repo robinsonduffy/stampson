@@ -44,6 +44,19 @@ describe Price do
       good_price = Price.new(@attr.merge(:item_id => item2.id))
       good_price.should be_valid
     end
+  end
+  
+  describe "Item association" do
+    before(:each) do
+      @price = Factory(:price, :item => @item)
+    end
     
+    it "should have a item attribute" do
+      @price.should respond_to(:item)
+    end
+    
+    it "should have the right item" do
+      @price.item.should == @item
+    end
   end
 end

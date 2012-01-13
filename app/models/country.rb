@@ -4,6 +4,6 @@ class Country < ActiveRecord::Base
   validates :name, :presence => true, 
                    :uniqueness => {:case_sensitve => false}
                    
-  has_many :items
+  has_many :items, :dependent => :destroy
                    
 end
