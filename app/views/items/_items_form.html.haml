@@ -1,3 +1,5 @@
+- content_for :custom_js do
+  = javascript_include_tag "custom/add_price.js"
 = form_for @item do |f|
   = render "shared/error_messages", :object => f.object
   %div.form-field
@@ -11,7 +13,7 @@
     = f.text_area :description
   %div#form-prices-wrapper
     - @item.prices.each do |price|
-      %div#form-price-wrapper
+      %div.form-price-wrapper
         %div.form-field
           = label_tag "Condition"
           = text_field_tag "conditions[]", price.condition || '', {:id => nil} 
@@ -19,13 +21,13 @@
           = label_tag "Price"
           = text_field_tag "prices[]", price.price || '', {:id => nil} 
     - if @item.prices.empty?
-      %div#form-price-wrapper
+      %div.form-price-wrapper
         %div.form-field
           = label_tag "Condition"
           = text_field_tag "conditions[]", nil, {:id => nil} 
         %div.form-field
           = label_tag "Price"
           = text_field_tag "prices[]", nil, {:id => nil} 
-    %a{:id => "add-new-price", :href => "#"} New Price/Condition
+  %a{:id => "add-new-price", :href => "#"} New Price/Condition
   %div.form-actions
     = f.submit "#{action} Item"

@@ -122,6 +122,12 @@ describe ItemsController do
                 post :create, :item => @attr, :country => "America", :prices => ['1.99','2.10'], :conditions => ['MNH','TEST']
               end.should change(Price, :count).by(2)
             end
+            
+            it "should ignore blank price/conditions (as long as both are blank)" do
+              lambda do
+                post :create, :item => @attr, :country => "America", :prices => ['1.99',''], :conditions => ['MNH','']
+              end.should change(Price, :count).by(1)
+            end
           end
           
           describe "failure" do

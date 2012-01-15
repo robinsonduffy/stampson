@@ -20,8 +20,10 @@ class ItemsController < ApplicationController
         valid_prices = true
         if(params[:prices] && params[:conditions])
           params[:prices].each do |price|
-            test_price = @item.prices.build({:price => price, :condition => params[:conditions][i]})
-            valid_prices = false if !test_price.valid?
+            if(valid_prices && (!price.empty? || !params[:conditions][i].empty?))
+              test_price = @item.prices.build({:price => price, :condition => params[:conditions][i]})
+              valid_prices = test_price.valid?
+            end
             i += 1
           end
           if valid_prices
