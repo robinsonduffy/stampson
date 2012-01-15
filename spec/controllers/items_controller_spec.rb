@@ -114,6 +114,31 @@ describe ItemsController do
             end.should_not change(Country, :count)
           end
         end
+        
+        describe "price handling" do
+          describe "success" do
+            it "should create new prices given correct attributes" do
+              lambda do
+                post :create, :item => @attr, :country => "America", :prices => ['1.99','2.10'], :conditions => ['MNH','TEST']
+              end.should change(Price, :count).by(2)
+            end
+          end
+          
+          describe "failure" do
+            it "should error out" do
+              lambda do
+                post :create, :item => @attr, :country => "America", :prices => ['','2.10'], :conditions => ['MNH','TEST']
+                response.should render_template(:new)
+              end.should_not change(Price, :count)
+            end
+            
+            it "should not create a new item either" do
+              lambda do
+                post :create, :item => @attr, :country => "America", :prices => ['','2.10'], :conditions => ['MNH','TEST']
+              end.should_not change(Item, :count)
+            end
+          end
+        end
       end
     end
   end

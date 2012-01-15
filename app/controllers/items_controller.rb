@@ -5,28 +5,44 @@ class ItemsController < ApplicationController
   def new
     @title = "Create New Item"
     @item = Item.new
-    @country = Country.new
   end
 
   def create
     @item = Item.new(params[:item])
-    @country = Country.find_by_name(params[:country]) || Country.new({:name => params[:country]})
-    if @country.save
+    country = Country.find_by_name(params[:country]) || Country.new({:name => params[:country]})
+    if country.save
       #good country
-      @country.reload
-      @item.country_id = @country.id
+      country.reload
+      @item.country_id = country.id
       if @item.save
+        #set up any prices
+        i = 0
+        valid_prices = true
+        if(params[:prices] && params[:conditions])
+          params[:prices].each do |price|
+            test_price = @item.prices.build({:price => price, :condition => params[:conditions][i]})
+            valid_prices = false if !test_price.valid?
+            i += 1
+          end
+          if valid_prices
+            @item.save
+          else
+            @item.destroy
+            flash.now[:error] = "The prices/conditions you entered were not valid"
+            render :new and return
+          end
+        end
         flash[:success] = "Item Successfully Created"
         redirect_to new_item_path
       else
         #bad item
         @title = "Create New Item"
-        render :new
+        render :new and return
       end
     else
       @title = "Create New Item"
       flash.now[:error] = "The country you entered isn't valid"
-      render :new
+      render :new and return
       #bad country
     end
   end
