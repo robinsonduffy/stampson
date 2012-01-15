@@ -29,6 +29,7 @@ class ItemsController < ApplicationController
           if valid_prices
             @item.save
           else
+            @title = "Create New Item"
             @item.destroy
             flash.now[:error] = "The prices/conditions you entered were not valid"
             render :new and return
