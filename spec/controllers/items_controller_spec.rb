@@ -46,7 +46,7 @@ describe ItemsController do
     describe "for non users" do
       it "should deny access" do
         post :create, :item => @attr, :country => "America"
-        response.should_not be_success
+        response.should redirect_to(login_path)
       end
     end
     
@@ -57,7 +57,7 @@ describe ItemsController do
       
       it "should deny access" do
         post :create, :item => @attr, :country => "America"
-        response.should_not be_success
+        response.should redirect_to(login_path)
       end
     end
     
@@ -147,6 +147,181 @@ describe ItemsController do
         end
       end
     end
+  end
+  
+  describe "GET 'edit'" do
+    before(:each) do
+      @country = Factory(:country)
+      @item = Factory(:item, :country => @country)
+    end
+    
+    describe "for non users" do
+      it "should deny access" do
+        get :edit, :id => @item
+        response.should redirect_to(login_path)
+      end
+    end
+    
+    describe "for non-admin users" do
+      before(:each) do
+        login_user(Factory(:user))
+      end
+      
+      it "should deny access" do
+        get :edit, :id => @item
+        response.should redirect_to(login_path)
+      end
+    end
+    
+    describe "for admin users" do
+      before(:each) do
+        login_user(Factory(:user, :admin => true))
+      end
+      
+      it "should be success" do
+        get :edit, :id => @item
+        response.should be_success
+      end
+      
+      it "should have the right title" do
+        get :edit, :id => @item
+        response.should have_selector("title", :content => "Edit Item")
+      end
+    end
+  end
+  
+  describe "PUT 'update'" do
+    before(:each) do
+      @country = Factory(:country)
+      @item = Factory(:item, :country => @country)
+      @price1 = Factory(:price, :item => @item)
+    end
+    
+    describe "for non users" do
+      it "should deny access" do
+        put :update, :id => @item
+        response.should redirect_to(login_path)
+      end
+    end
+    
+    describe "for non-admin users" do
+      before(:each) do
+        login_user(Factory(:user))
+      end
+      
+      it "should deny access" do
+        put :update, :id => @item
+        response.should redirect_to(login_path)
+      end
+    end
+    
+    describe "for admin users" do
+      before(:each) do
+        login_user(Factory(:user, :admin => true))
+      end
+      
+      describe "failure" do
+        before(:each) do
+          @attr = {:scott_number => '', :description => ''}
+        end
+        
+        describe "basic item failure" do
+          it "should show the edit form again" do
+            put :update, :id => @item, :item => @attr, :country => @item.country.name, :prices => [@item.prices.first.price], :conditions => [@item.prices.first.condition]
+            response.should render_template(:edit)
+          end
+        
+          it "should have the right title" do
+            put :update, :id => @item, :item => @attr, :country => @item.country.name, :prices => [@item.prices.first.price], :conditions => [@item.prices.first.condition]
+            response.should have_selector("title", :content => "Edit Item")
+          end
+        end
+        
+        describe "country failure" do
+          it "should show the edit form again" do
+            put :update, :id => @item, :item => {:scott_number => @item.scott_number, :description => @item.description}, :country => '', :prices => [@item.prices.first.price], :conditions => [@item.prices.first.condition]
+            response.should render_template(:edit)
+          end
+        
+          it "should have the right title" do
+            put :update, :id => @item, :item => {:scott_number => @item.scott_number, :description => @item.description}, :country => '', :prices => [@item.prices.first.price], :conditions => [@item.prices.first.condition]
+            response.should have_selector("title", :content => "Edit Item")
+          end
+        end
+        
+        describe "price failure" do
+          it "should show the edit form again" do
+            put :update, :id => @item, :item => {:scott_number => @item.scott_number, :description => @item.description}, :country => @item.country.name, :prices => [@item.prices.first.price], :conditions => ['']
+            response.should render_template(:edit)
+          end
+        
+          it "should have the right title" do
+            put :update, :id => @item, :item => {:scott_number => @item.scott_number, :description => @item.description}, :country => @item.country.name, :prices => [@item.prices.first.price], :conditions => ['']
+            response.should have_selector("title", :content => "Edit Item")
+          end
+        end
+        
+      end
+      
+      describe "success" do
+        before(:each) do
+          @attr = {:scott_number => '300-301', :description => 'Changed'}
+        end
+        
+        it "should change the item's basic attributes" do
+          put :update, :id => @item, :item => @attr, :country => @item.country.name, :prices => [@item.prices.first.price], :conditions => [@item.prices.first.condition]
+          @item.reload
+          @item.scott_number.should == @attr[:scott_number]
+          @item.description.should == @attr[:description]
+        end
+        
+        it "should redirect to the root path(for now)" do
+          put :update, :id => @item, :item => @attr, :country => @item.country.name, :prices => [@item.prices.first.price], :conditions => [@item.prices.first.condition]
+          response.should redirect_to(root_path) #for now
+        end
+        
+        it "should flash a success message" do
+          put :update, :id => @item, :item => @attr, :country => @item.country.name, :prices => [@item.prices.first.price], :conditions => [@item.prices.first.condition]
+          flash[:success].should =~ /changed/i
+        end
+        
+        describe "successful country changes" do
+          it "should change the country (adding a new one if necessary)" do
+            lambda do
+              put :update, :id => @item, :item => @attr, :country => 'A New Country', :prices => [@item.prices.first.price], :conditions => [@item.prices.first.condition]
+              @item.reload
+              @item.country.name.should == "A New Country"
+            end.should change(Country, :count).by(1)
+          end
+        end
+        
+        describe "successful price change" do
+          it "should change an existing condition/price" do
+            put :update, :id => @item, :item => @attr, :country => @item.country.name, :prices => ['0.15'], :conditions => [@item.prices.first.condition]
+            @item.reload
+            @item.prices.first.price.should == 0.15
+          end
+          
+          it "should add a new item, leaving existing ones" do
+            put :update, :id => @item, :item => @attr, :country => @item.country.name, :prices => [@item.prices.first.price, '0.15'], :conditions => [@item.prices.first.condition, 'TEST']
+            @item.reload
+            @item.prices.first.price.should == 1.99
+            @item.prices.first.condition.should == 'MNH'
+            @item.prices.last.price.should == 0.15
+            @item.prices.last.condition.should == 'TEST'
+            @item.prices.count.should == 2
+          end
+          
+          it "should get rid of any conditions/prices that were removed by user" do
+            put :update, :id => @item, :item => @attr, :country => @item.country.name, :prices => ['0.15'], :conditions => ['TEST']
+            @item.prices.first.price.should == 0.15
+            @item.prices.first.condition.should == 'TEST'
+            @item.prices.count.should == 1
+          end
+        end
+      end
+    end
+    
   end
 
 end
