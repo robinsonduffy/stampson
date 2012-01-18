@@ -5,7 +5,7 @@ class SorceryCore < ActiveRecord::Migration
       t.string :email,            :null => false # if you use this field as a username, you might want to make it :null => false.
       t.string :crypted_password, :default => nil
       t.string :salt,             :default => nil
-      t.boolean :admin,            :default => 0
+      t.boolean :admin,            :default => false
       
       t.timestamps
     end
