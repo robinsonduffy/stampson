@@ -56,6 +56,19 @@ class ItemsController < ApplicationController
   end
   
   def update
+    #gather together our prices and do some simple validations
+    entered_conditions = Hash.new
+    i = 0
+    params[:conditions].each do |condition|
+      if entered_conditions[condition].nil? 
+        entered_conditions[condition] = params[:prices][i]
+      else
+        @title = "Edit Item"
+        flash.now[:error] = "The conditions/prices you entered weren't valid"
+        render :edit and return
+      end
+      i += 1
+    end
     @item = Item.find_by_id(params[:id])
     #check if we need to update the country
     if @item.country.name != params[:country]
@@ -71,27 +84,21 @@ class ItemsController < ApplicationController
         render :edit and return
       end
     end
-    #build any new prices...update any existing prices
-    conditions_to_keep = []
-    i = 0
-    params[:conditions].each do |condition|
-      conditions_to_keep.push(condition) if (!condition.empty? && !condition.include?(condition))
-      if @item.prices.find_by_condition(condition).nil?
-        #new price
-        @item.prices.build({:price => params[:prices][i], :condition => condition})
+    #update any existing prices
+    for price in @item.prices do
+      if params[:conditions].include?(price.condition)
+        price.price = entered_conditions[price.condition]
       else
-        #existing price
-        #unmark it for destruction
-        @item.prices.find_by_condition(condition).reload
-        #change the parameters
-        @item.prices.find_by_condition(condition).price = params[:prices][i]
+        price.mark_for_destruction
       end
     end
-    #mark all the not needed prices for deletion
-    for price in @item.prices do 
-      if !conditions_to_keep.include?(price.condition)
-        price.mark_for_destruction 
+    #build any new prices
+    i = 0
+    params[:conditions].each do |condition|
+      if @item.prices.find_by_condition(condition).nil?
+        @item.prices.build({:price => params[:prices][i], :condition => condition})
       end
+      i += 1
     end
     #update the basic item attributes
     if(@item.update_attributes(params[:item]))
