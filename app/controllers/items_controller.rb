@@ -104,7 +104,7 @@ class ItemsController < ApplicationController
     if(@item.update_attributes(params[:item]))
       #everything checked out
       flash[:success] = 'Item Changed'
-      redirect_to(root_path) #for now
+      redirect_to(@item.country) #for now
     else
       #we had a problem
       @title = "Edit Item"

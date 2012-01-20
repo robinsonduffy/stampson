@@ -1,0 +1,9 @@
+- @scott_numbers_sorted.each do |scott_number|
+  - item = @country.items.find_by_scott_number(scott_number)
+  %div.item-detail
+    %h3.scott_number= (current_user && current_user.admin) ? link_to(item.scott_number, edit_item_path(item.id)) : item.scott_number
+    %p.description= item.description
+    %ul.item-prices
+      - item.prices.each do |price|
+        %li.item-price= "#{price.condition}: #{price.price}"
+  

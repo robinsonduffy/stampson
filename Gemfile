@@ -20,6 +20,7 @@ gem "haml", ">= 3.0.0"
 gem "haml-rails"
 gem "jquery-rails"
 gem "sorcery"
+gem "naturalsort"
 
 #Use unicorn as the web server
 # gem 'unicorn'

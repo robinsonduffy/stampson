@@ -277,7 +277,7 @@ describe ItemsController do
         
         it "should redirect to the root path(for now)" do
           put :update, :id => @item, :item => @attr, :country => @item.country.name, :prices => [@item.prices.first.price], :conditions => [@item.prices.first.condition]
-          response.should redirect_to(root_path) #for now
+          response.should redirect_to(@country)
         end
         
         it "should flash a success message" do

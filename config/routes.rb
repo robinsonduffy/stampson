@@ -1,4 +1,5 @@
 Stampson::Application.routes.draw do
+
   get "pages/home"
   root :to => "pages#home"
   
@@ -6,6 +7,7 @@ Stampson::Application.routes.draw do
   get "logout" => "sessions#destroy", :as => "logout"
   resources :sessions, :only => [:create]
   resources :items, :only => [:new, :create, :edit, :update]
+  resources :countries, :only => [:show]
 
   #resources :users, :except => [:show]
 
