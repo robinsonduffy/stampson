@@ -187,6 +187,11 @@ describe ItemsController do
         get :edit, :id => @item
         response.should have_selector("title", :content => "Edit Item")
       end
+      
+      it "should have a delete link" do
+        get :edit, :id => @item
+        response.should have_selector("a", :content => "Delete Item")
+      end
     end
   end
   
@@ -322,6 +327,60 @@ describe ItemsController do
       end
     end
     
+  end
+  
+  describe "DELETE 'destroy'" do
+    before(:each) do
+      @country = Factory(:country)
+      @item = Factory(:item, :country => @country)
+      @price1 = Factory(:price, :item => @item)
+    end
+    
+    describe "for non users" do
+      it "should deny access" do
+        delete :destroy, :id => @item
+        response.should redirect_to(login_path)
+      end
+    end
+    
+    describe "for non-admin users" do
+      before(:each) do
+        login_user(Factory(:user))
+      end
+      
+      it "should deny access" do
+        delete :destroy, :id => @item
+        response.should redirect_to(login_path)
+      end
+    end
+    
+    describe "for admin users" do
+      before(:each) do
+        login_user(Factory(:user, :admin => true))
+      end
+      
+      it "should delete the item" do
+        lambda do
+          delete :destroy, :id => @item
+        end.should change(Item, :count).by(-1)
+      end
+      
+      it "should delete the item's prices" do
+        lambda do
+          delete :destroy, :id => @item
+        end.should change(Price, :count).by(-1)
+      end
+    
+      it "should redirect to the user index page" do
+        delete :destroy, :id => @item
+        response.should redirect_to(country_path(@item.country))
+      end
+    
+      it "should display a confirmation message" do
+        delete :destroy, :id => @item
+        flash[:success] =~ /deleted/i
+      end
+    end
   end
 
 end

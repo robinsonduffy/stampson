@@ -6,7 +6,7 @@ Stampson::Application.routes.draw do
   get "login" => "sessions#new", :as => "login"
   get "logout" => "sessions#destroy", :as => "logout"
   resources :sessions, :only => [:create]
-  resources :items, :only => [:new, :create, :edit, :update]
+  resources :items, :only => [:new, :create, :edit, :update, :destroy]
   resources :countries, :only => [:show]
 
   #resources :users, :except => [:show]

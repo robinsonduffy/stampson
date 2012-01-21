@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_filter :require_login, :only => [:new, :create, :edit, :update]
-  before_filter :require_admin, :only => [:new, :create, :edit, :update]
+  before_filter :require_login, :only => [:new, :create, :edit, :update, :destroy]
+  before_filter :require_admin, :only => [:new, :create, :edit, :update, :destroy]
   
   def new
     @title = "Create New Item"
@@ -110,6 +110,12 @@ class ItemsController < ApplicationController
       @title = "Edit Item"
       render :edit and return
     end
+  end
+  
+  def destroy
+    item = Item.find(params[:id]).destroy
+    flash[:success] = "Item deleted (#{item.country.name}: #{item.scott_number})"
+    redirect_to country_path(item.country)
   end
 
 end
