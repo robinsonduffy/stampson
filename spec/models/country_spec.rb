@@ -39,8 +39,11 @@ describe Country do
       @country.should respond_to(:items)
     end
     
-    #it "should have the right items in the right order" do
-      #@country.items.should == [@item2, @item6,@item8,@item5,@item1,@item4,@item3,@item7]
-    #end
+  end
+  
+  describe "active countries list" do
+    it "should have an 'active' attribute" do
+      Country.should respond_to(:active)
+    end
   end
 end
