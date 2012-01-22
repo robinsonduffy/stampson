@@ -8,20 +8,28 @@
     = javascript_include_tag "jquery_ujs.js"
     = yield :custom_js
     = csrf_meta_tag
-  %body
-    %div#header
-      %ul#user-navigation
+  %body.twocolumns
+    %div#wrap
+      %div#header
+        %h1= link_to("Sampson Stamps", root_path)
+      %div#leftside
+        = render("shared/country_nav")
+        %div#announce
+          %h2 Buy List
+      %div#content
+        %h1.title= (@title.nil?) ? @base_title : @title
+        %div#flash-messages
+          - flash.each do |type, message|
+            %div{:class => ["flash", type]}= message
+        = yield
+      %div#footer
+        %p 
+          &copy; 2012, Robinson Duffy
+          %br Template design by
+          %a{:href => 'http://andreasviklund.com'} Andreas Viklund
+      %p#admin-link 
         - if current_user
-          %li= link_to "Logout", logout_path
+          = link_to "Logout", logout_path
         - else
-          %li= link_to "Login", login_path
-    %div#navigation
-      = render("shared/country_nav")
-    %div#content-wrapper
-      %h1.title= (@title.nil?) ? @base_title : @title
-      %div#flash-messages
-        - flash.each do |type, message|
-          %div{:class => ["flash", type]}= message
-      %div#content= yield
+          = link_to "Login", login_path
     %div#debug-info= debug(params) if Rails.env.development?
-    

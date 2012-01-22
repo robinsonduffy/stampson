@@ -1,0 +1,100 @@
+/*
+Original design: Variant Creative (v1.0 - Jan 06, 2011) - A free xhtml/css website template by Andreas Viklund.
+For more information, see http://andreasviklund.com/templates/variant-creative/
+*/
+
+/* Main layout and header */
+body {background:url(img/bg.gif) repeat-y top center #2a2a2a; color:#3a3a3a; font:76% Tahoma,Arial,sans-serif; line-height:1.4em; margin:0 auto; padding:0;}
+#wrap {background:#fff; color:#303030; margin:0 auto; padding:0; width:980px;}
+#header {background:url(img/front.jpg) no-repeat top left #2a5a7a; color:#fff; height:220px; margin:0 0 10px; padding:0;}
+#header h1 {font-size:3em; font-weight:400; letter-spacing:-2px; margin:0 0 15px 15px; padding:30px 0 10px; font-family:Georgia,serif; text-align:center;}
+#header h1 a,#header h1 a:hover {font-weight:400; padding:0; color:#fff;}
+#header p {font-size:1.5em; letter-spacing:-1px; margin:0 0 20px 15px; padding:0 0 0 3px; font-family:Georgia,serif; text-align:center;}
+
+/* Left sidebar and menu */
+#leftside {clear:left; float:left; margin:-35px 10px 5px 10px; padding:0; width:150px;}
+#leftside ul.avmenu {list-style:none; margin:0 0 18px; padding:0; width:150px;}
+#leftside ul.avmenu li {display:inline; padding:0; width:140px;}
+#leftside ul.avmenu li a {background:url(img/menubg.gif) repeat-x bottom left #f4f4f4; border:1px solid #d8d8d8; color:#505050; float:left; font-size:1.2em; font-weight:400; margin-bottom:10px; padding:5px 1px 5px 5px; text-decoration:none; width:142px; font-family:Georgia,serif;}
+#leftside ul.avmenu li a:hover,#leftside ul.avmenu li a.current {background:url(img/menubg2.gif) repeat-x bottom left #eaeaea; border:1px solid #aaa; color:#505050;}
+#leftside ul.avmenu ul {font-size:0.9em; margin:0 0 0 15px; padding:0 0 10px 0; width:137px;}
+#leftside ul.avmenu ul a {padding:3px 1px 3px 5px; width:127px;}
+#leftside ul.avmenu ul ul {font-size:1em; width:124px;}
+#leftside ul.avmenu ul ul a {width:112px;}
+#leftside h2 {font-size:1.5em; font-weight:400;}
+#leftside .announce {background:url(img/menubg.gif) repeat-x bottom left #f4f4f4; border:1px solid #d8d8d8; clear:left; color:#505050; line-height:1.3em; margin:10px 0; padding:5px 5px 5px; width:138px;}
+#leftside p,.announce p {font-size:1em;}
+
+/* Right sidebar */
+#extras {float:right; margin:-35px 10px 10px 10px; padding:0; width:150px;}
+#extras p,#extras ul {line-height:1.4em; margin:0 0 15px; padding:0;}
+#extras li {list-style:none; margin:0 0 6px; padding:0;}
+#extras h2 {font-size:1.5em; font-weight:400; margin:0 0 6px;}
+
+/* Main content */
+#content {line-height:1.6em; margin:-95px 185px 5px 185px; padding:0; text-align:left;}
+#content h2 {font-size:2em; font-weight:400; letter-spacing:-1px; margin:8px 0 10px; padding:0;}
+#content h3 {font-size:1.6em; font-weight:400; margin:6px 0; padding:0;}
+#content ul,#content ol {margin:0 0 16px 20px; padding:0;}
+#content ul ul,#content ol ol {margin:2px 0 2px 15px;}
+#content li {margin:0 0 2px 5px; padding:0 0 0 4px;}
+
+/* Footer */
+#footer {background:#fff url(img/footerbg.jpg) top center no-repeat; clear:both; color:#888; font-size:0.9em; margin:0 auto; padding:0; text-align:center; width:960px; height:86px;}
+#footer p {margin:0 auto; padding:20px 0 0; width:610px;}
+#footer a {background:inherit; color:#666; font-weight:400; text-decoration:none;}
+#footer a:hover {text-decoration:underline;}
+#footer span {font-size:1.2em;}
+
+/* Links and paragraphs */
+a {color:#166090; text-decoration:none; font-weight:700;}
+a:hover {color:#286ea0; text-decoration:underline;}
+a img {border:0;}
+p {margin:0 0 16px;}
+blockquote {background:url(img/menubg.gif) repeat-x bottom left #f4f4f4; border-bottom:1px solid #d8d8d8; border-left:4px solid #ccc; border-right:1px solid #d8d8d8; border-top:1px solid #d8d8d8; color:#555; margin:16px; padding:7px 7px 7px 11px;}
+blockquote p {font-size:1.1em; line-height:1.3em; margin:0;}
+
+/* Header texts */
+h2,h3,h4 {font-family:Georgia,serif; font-weight:400;}
+
+/* Images */
+#content img {max-width:610px;}
+#content img.alignleft {display:inline; float:left; margin:5px 15px 5px 0;}
+#content img.alignright {float:right; margin:5px 0 5px 15px;}
+#content img.aligncenter {display:block; margin:10px auto;}
+#content img.border {background:#ccc; border:4px solid #f0f0f0; color:#333; padding:1px;}
+
+/* Tables and forms */
+table {border:1px solid #d8d8d8; border-collapse:collapse; line-height:1.3em; width:95%; margin:0 0 16px; padding:0;}
+caption {font-size:1.5em; font-weight:400; margin:0; padding:6px 0 8px; text-align:left;}
+th {background:url(img/menubg2.gif) repeat-x bottom left #eaeaea; color:#555; padding:7px; text-align:left;}
+td {background:url(img/menubg.gif) repeat-x bottom left #f4f4f4; color:#303030; font-size:0.9em; padding:7px; text-align:left;}
+input,textarea {border:1px solid #ccc; font-family:Verdana,Tahoma,Arial,Sans-Serif; font-size:1em; margin:0; padding:4px;}
+label {margin:2px 0 2px 0; font-size:1.2em;}
+input {width:200px;}
+textarea {width:400px;}
+
+/* Search box */
+#searchbox label,.hide {display:none;}
+#searchbox {margin:6px 0 16px; padding:0;}
+#searchform {background:#fff; border:1px solid #ccc; color:#555; font-size:0.9em; padding:4px; width:116px;}
+
+/* Additional classes */
+.announce h2 {margin:0 0 10px; padding:0;}
+.announce p {margin:0 0 5px 0;}
+.center {text-align:center;}
+.small {font-size:0.8em;}
+.large {font-size:1.3em;}
+.red {color:red;}
+.green {color:green;}
+.blue {color:blue;}
+.highlighted {background:#f0f0f0; border:1px solid #b0b0b0; color:#303030; padding:3px;}
+.button {background:url(img/menubg.gif) repeat-x bottom left #f4f4f4; border-bottom:1px solid #d8d8d8; border-left:4px solid #ccc; border-right:1px solid #d8d8d8; border-top:1px solid #d8d8d8; color:#555; font-weight:400; font-size:1.2em; margin:0 0 15px; padding:7px 7px 7px 11px; width:120px;}
+.left {float:left; margin:10px 10px 5px 0;}
+.right {float:right; margin:10px 0 5px 10px;}
+
+/* 2-column adjustments */
+.twocolumns #header {background:url(img/front-2columns.jpg) no-repeat top left #2a5a7a;}
+.twocolumns #content {margin:-95px 30px 10px 185px;}
+.twocolumns #footer {background:#fff url(img/footerbg-2columns.jpg) top center no-repeat;}
+.twocolumns #footer p {width:765px; margin-left:175px;}
