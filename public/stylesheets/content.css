@@ -1,0 +1,29 @@
+
+#admin-link {float:right; margin-right:20px;}
+#admin-link a {font-weight:normal; font-size:10px;}
+#header h1 {text-align:right; padding-right:20px; padding-top:75px;}
+#header h1 a:hover {text-decoration:none;}
+
+/*FORMS*/
+.form-field {padding-bottom:15px;}
+input#remember_me {width:20px;}
+label {font-weight:bold;}
+.form-price-wrapper {border:1px dotted #666; padding:10px}
+#add-new-price {border:1px solid #cccccc; margin:10px 0; padding:5px; float:left;}
+.form-actions {clear:left;}
+
+/*ERRORS*/
+div#error-explanation {border: 1px solid #fe5454; padding:5px; margin-bottom:10px; font-weight:bold; background-color:#ffcaca; color:#fe5454;}
+div.field_with_errors input {border:1px solid #f35454;}
+div.field_with_errors label {color:#f35454;}
+
+/*FLASH*/
+div.flash {border: 1px solid; padding:5px; margin-bottom:10px; font-weight:bold;}
+div.flash.error {border-color:#fe5454; background-color:#ffcaca; color:#fe5454;}
+div.flash.success {border-color:#2774dc; background-color:#9bb7dc; color:#2774dc;}
+
+/*PRICE LISTS*/
+.item-detail {margin-bottom:30px;}
+.item-detail h3.scott_number {border:1px solid #ccc; padding:3px!important; background-color:#f0f0f0;}
+.item-detail .description {margin-left:10px; margin-bottom:0; font-style:italic}
+span.price {font-weight:bold;}

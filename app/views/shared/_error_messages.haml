@@ -1,6 +1,5 @@
 - if object.errors.any?
   %div#error-explanation
-    %p Errors:
     %ul
       - object.errors.full_messages.each do |msg|
         %li= msg

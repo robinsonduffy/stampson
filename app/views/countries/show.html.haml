@@ -5,5 +5,7 @@
     %p.description= item.description
     %ul.item-prices
       - item.prices.each do |price|
-        %li.item-price= "#{price.condition}: #{price.price}"
+        %li.item-price
+          %span.condition="#{price.condition}:" 
+          %span.price= "#{number_to_currency(price.price)}"
   

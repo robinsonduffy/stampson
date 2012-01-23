@@ -4,30 +4,31 @@
   = render "shared/error_messages", :object => f.object
   %div.form-field
     = label_tag :country
-    = text_field_tag :country, (@item.country) ? @item.country.name : ''
+    %br= text_field_tag :country, (@item.country) ? @item.country.name : ''
   %div.form-field
     = f.label :scott_number
-    = f.text_field :scott_number
+    %br= f.text_field :scott_number
   %div.form-field
     = f.label :description
-    = f.text_area :description
+    %br= f.text_area :description
   %div#form-prices-wrapper
     - @item.prices.each do |price|
       %div.form-price-wrapper
         %div.form-field
           = label_tag "Condition"
-          = text_field_tag "conditions[]", price.condition || '', {:id => nil} 
+          %br= text_field_tag "conditions[]", price.condition || '', {:id => nil} 
         %div.form-field
           = label_tag "Price"
-          = text_field_tag "prices[]", price.price || '', {:id => nil} 
+          %br= text_field_tag "prices[]", price.price || '', {:id => nil} 
     - if @item.prices.empty?
       %div.form-price-wrapper
         %div.form-field
           = label_tag "Condition"
-          = text_field_tag "conditions[]", nil, {:id => nil} 
+          %br= text_field_tag "conditions[]", nil, {:id => nil} 
         %div.form-field
           = label_tag "Price"
-          = text_field_tag "prices[]", nil, {:id => nil} 
-  %a{:id => "add-new-price", :href => "#"} New Price/Condition
+          %br= text_field_tag "prices[]", nil, {:id => nil} 
+  %p
+    %a{:id => "add-new-price", :href => "#"} New Price/Condition
   %div.form-actions
     = f.submit "#{action} Item"
