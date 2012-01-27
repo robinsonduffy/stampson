@@ -59,6 +59,7 @@ class ItemsController < ApplicationController
     #gather together our prices and do some simple validations
     entered_conditions = Hash.new
     i = 0
+    to_delete = Array.new
     params[:conditions].each do |condition|
       if entered_conditions[condition].nil? 
         entered_conditions[condition] = params[:prices][i]
@@ -67,7 +68,14 @@ class ItemsController < ApplicationController
         flash.now[:error] = "The conditions/prices you entered weren't valid"
         render :edit and return
       end
+      if condition.empty? && params[:prices][i].to_s.empty?
+        to_delete.push i
+      end
       i += 1
+    end
+    to_delete.each do |i|
+      params[:conditions].delete_at(i)
+      params[:prices].delete_at(i)
     end
     @item = Item.find_by_id(params[:id])
     #check if we need to update the country

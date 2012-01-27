@@ -318,9 +318,11 @@ describe ItemsController do
           end
           
           it "should get rid of any conditions/prices that were removed by user" do
-            put :update, :id => @item, :item => @attr, :country => @item.country.name, :prices => ['0.15'], :conditions => ['TEST']
-            @item.prices.first.price.should == 0.15
+            @price2 = Factory(:price, :item => @item, :condition => 'TEST', :price => '0.15')
+            put :update, :id => @item, :item => @attr, :country => @item.country.name, :prices => ['','0.15'], :conditions => ['','TEST']
+            @item.reload
             @item.prices.first.condition.should == 'TEST'
+            @item.prices.first.price.should == 0.15
             @item.prices.count.should == 1
           end
         end

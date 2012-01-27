@@ -1,6 +1,6 @@
 module ApplicationHelper
   def title
-    @base_title = "Stampson Stamps"
+    @base_title = "Sampson Stamps"
     if @title.nil?
       @base_title
     else
