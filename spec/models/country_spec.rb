@@ -46,4 +46,56 @@ describe Country do
       Country.should respond_to(:active)
     end
   end
+  
+  describe "sell method" do
+    before(:each) do
+      @country1 = Factory(:country, :name => "Country A")
+      @country2 = Factory(:country, :name => "Country B")
+      @country3 = Factory(:country, :name => "Country C")
+      @country4 = Factory(:country, :name => "Country D")
+      item1 = Factory(:item, :country => @country1)
+      item2 = Factory(:item, :country => @country2)
+      item4 = Factory(:item, :country => @country4)
+      Factory(:price, :item => item1, :condition => "MNH")
+      Factory(:price, :item => item2, :condition => "MNH")
+      Factory(:price, :item => item4, :condition => "BUY")
+    end
+    it "should have a sell method" do
+      Country.should respond_to(:sell)
+    end
+    
+    it "should return only the countries with items to sell" do
+      sell_list = Country.active.sell
+      sell_list.should include(@country1)
+      sell_list.should include(@country2)
+      sell_list.should_not include(@country3)
+      sell_list.should_not include(@country4)
+    end
+  end
+  
+  describe "buy method" do
+    before(:each) do
+      @country1 = Factory(:country, :name => "Country A")
+      @country2 = Factory(:country, :name => "Country B")
+      @country3 = Factory(:country, :name => "Country C")
+      @country4 = Factory(:country, :name => "Country D")
+      item1 = Factory(:item, :country => @country1)
+      item2 = Factory(:item, :country => @country2)
+      item4 = Factory(:item, :country => @country4)
+      Factory(:price, :item => item1, :condition => "MNH")
+      Factory(:price, :item => item2, :condition => "BUY")
+      Factory(:price, :item => item4, :condition => "BUY")
+    end
+    it "should have a buy method" do
+      Country.should respond_to(:buy)
+    end
+    
+    it "should return only the countries with items to buy" do
+      buy_list = Country.active.buy
+      buy_list.should include(@country2)
+      buy_list.should include(@country4)
+      buy_list.should_not include(@country1)
+      buy_list.should_not include(@country3)
+    end
+  end
 end

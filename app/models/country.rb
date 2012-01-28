@@ -8,4 +8,6 @@ class Country < ActiveRecord::Base
   
   scope :active, :include => :items, :conditions => ['items.id IS NOT NULL'], :order => ["(countries.name = 'Specials'), countries.name"]
   scope :no_specials, :conditions => ["countries.name != 'Specials'"], :order => ['countries.name']
+  scope :sell, :include => {:items => :prices}, :conditions => "prices.condition != 'BUY'"
+  scope :buy, :include => {:items => :prices}, :conditions => "prices.condition = 'BUY'"
 end
