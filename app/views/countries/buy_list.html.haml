@@ -1,0 +1,13 @@
+%table#buy-list
+  %thead
+    %tr
+      - (1..4).each do
+        %th Item
+        %th Price
+  %tbody
+    - @scott_numbers_sorted.in_groups_of(4, false).each do |row|
+      %tr
+        - row.each do |scott_number|
+          - item = @country.items.find_by_scott_number(scott_number)
+          %td.item= (current_user && current_user.admin) ? link_to(item.scott_number, edit_item_path(item.id)) : item.scott_number
+          %td.price= number_to_currency(item.prices.buy.first.price)

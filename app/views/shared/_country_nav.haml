@@ -5,4 +5,4 @@
 %h2 Buy Lists
 %ul.avmenu
   - Country.active.buy.each do |country|
-    %li= link_to(country.name, country)
+    %li= link_to(country.name, country_buy_list_path(country))

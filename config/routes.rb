@@ -8,6 +8,7 @@ Stampson::Application.routes.draw do
   resources :sessions, :only => [:create]
   resources :items, :only => [:new, :create, :edit, :update, :destroy]
   resources :countries, :only => [:show]
+  match 'countries/:id/buy' => 'countries#buy_list', :as => 'country_buy_list'
 
   #resources :users, :except => [:show]
 
