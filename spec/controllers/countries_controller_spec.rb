@@ -21,7 +21,7 @@ describe CountriesController do
     
     it "should list all of the stamps" do
       get :show, :id => @country
-      @country.items.each do |item|
+      @country.items.sell.each do |item|
         response.should have_selector(".scott_number", :content => item.scott_number)
       end
     end
@@ -29,8 +29,8 @@ describe CountriesController do
     describe "for non-admins" do
       it "should not have links to edit the items" do
         get :show, :id => @country
-        (1..10).each do |number|
-          response.should_not have_selector("a", :href => edit_item_path(number))
+        @country.items.sell.each do |item|
+          response.should_not have_selector("a", :href => edit_item_path(item.id))
         end
       end
     end
@@ -42,8 +42,8 @@ describe CountriesController do
       
       it "should have links to edit the items" do
         get :show, :id => @country
-        (1..10).each do |number|
-          response.should have_selector("a", :href => edit_item_path(number))
+        @country.items.sell.each do |item|
+          response.should have_selector("a", :href => edit_item_path(item.id))
         end
       end
       

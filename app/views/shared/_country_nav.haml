@@ -1,4 +1,8 @@
 %h2 Sell Lists
 %ul.avmenu
-  - Country.active.each do |country|
+  - Country.active.sell.each do |country|
+    %li= link_to(country.name, country)
+%h2 Buy Lists
+%ul.avmenu
+  - Country.active.buy.each do |country|
     %li= link_to(country.name, country)

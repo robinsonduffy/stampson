@@ -4,7 +4,7 @@
     %h3.scott_number= (current_user && current_user.admin) ? link_to(item.scott_number, edit_item_path(item.id)) : item.scott_number
     %p.description= item.description
     %ul.item-prices
-      - item.prices.each do |price|
+      - item.prices.sell.each do |price|
         %li.item-price
           %span.condition="#{price.condition}:" 
           %span.price= "#{number_to_currency(price.price)}"

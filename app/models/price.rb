@@ -19,5 +19,7 @@ class Price < ActiveRecord::Base
   belongs_to :item
   
   default_scope :order => 'prices.price DESC'
+  scope :sell, :conditions => "prices.condition != 'BUY'"
+  scope :buy, :conditions => "prices.condition = 'BUY'"
   
 end
