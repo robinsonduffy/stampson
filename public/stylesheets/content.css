@@ -22,8 +22,13 @@ div.flash {border: 1px solid; padding:5px; margin-bottom:10px; font-weight:bold;
 div.flash.error {border-color:#fe5454; background-color:#ffcaca; color:#fe5454;}
 div.flash.success {border-color:#2774dc; background-color:#9bb7dc; color:#2774dc;}
 
-/*PRICE LISTS*/
+/*SELL LISTS*/
 .item-detail {margin-bottom:30px;}
 .item-detail h3.scott_number {border:1px solid #ccc; padding:3px!important; background-color:#f0f0f0;}
 .item-detail .description {margin-left:10px; margin-bottom:0; font-style:italic}
 span.price {font-weight:bold;}
+
+/*BUY LISTS*/
+table#buy-list {width:100%;}
+table#buy-list .item {text-align:right;}
+table#buy-list .price {text-align:left; border-right:1px solid #d8d8d8;}

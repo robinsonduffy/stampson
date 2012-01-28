@@ -2,8 +2,8 @@
   %thead
     %tr
       - (1..4).each do
-        %th Item
-        %th Price
+        %th.item Item
+        %th.price Price
   %tbody
     - @scott_numbers_sorted.in_groups_of(4, false).each do |row|
       %tr
