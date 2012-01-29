@@ -3,6 +3,7 @@
 #admin-link a {font-weight:normal; font-size:10px;}
 #header h1 {text-align:right; padding-right:20px; padding-top:75px;}
 #header h1 a:hover {text-decoration:none;}
+.admin-page-link {border-right:1px solid #ccc; padding-right:10px; margin-right:8px;}
 
 /*FORMS*/
 .form-field {padding-bottom:15px;}
