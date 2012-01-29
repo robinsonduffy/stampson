@@ -22,4 +22,6 @@ class Price < ActiveRecord::Base
   scope :sell, :conditions => "prices.condition != 'BUY'"
   scope :buy, :conditions => "prices.condition = 'BUY'"
   
+  auto_strip_attributes :condition, :squish => true, :nullify => false
+  
 end

@@ -22,6 +22,12 @@ describe Country do
     end
   end
   
+  it "should strip whitespace before checking for unique name" do
+    Country.create!(@attr)
+    same_name_country = Country.new({:name => "Test  Country "})
+    same_name_country.should_not be_valid
+  end
+  
   describe "item association" do
     before(:each) do
       @country = Country.create(@attr)

@@ -21,4 +21,6 @@ class Item < ActiveRecord::Base
   #default_scope :order => "SUBSTR(items.scott_number,1,1) NOT IN ('1','2','3','4','5','6','7','8','9'), items.scott_number + 0 ASC, LENGTH(items.scott_number), SUBSTR(items.scott_number,1,1)"
   scope :sell, :include => :prices, :conditions => "prices.condition != 'BUY'"
   scope :buy, :include => :prices, :conditions => "prices.condition = 'BUY'"
+  
+  auto_strip_attributes :scott_number, :squish => true, :nullify => false
 end

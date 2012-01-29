@@ -21,6 +21,7 @@ gem "haml-rails"
 gem "jquery-rails"
 gem "sorcery"
 gem "naturalsort"
+gem "auto_strip_attributes", "~> 1.0"
 
 #Use unicorn as the web server
 # gem 'unicorn'

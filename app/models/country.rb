@@ -10,4 +10,6 @@ class Country < ActiveRecord::Base
   scope :no_specials, :conditions => ["countries.name != 'Specials'"], :order => ['countries.name']
   scope :sell, :include => {:items => :prices}, :conditions => "prices.condition != 'BUY'"
   scope :buy, :include => {:items => :prices}, :conditions => "prices.condition = 'BUY'"
+  
+  auto_strip_attributes :name, :squish => true, :nullify => false
 end
