@@ -2,6 +2,7 @@ Stampson::Application.routes.draw do
 
   get "pages/home"
   root :to => "pages#home"
+  match "admin" => 'pages#admin', :as => 'admin'
   
   get "login" => "sessions#new", :as => "login"
   get "logout" => "sessions#destroy", :as => "logout"

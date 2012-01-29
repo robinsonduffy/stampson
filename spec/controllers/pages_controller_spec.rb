@@ -34,5 +34,41 @@ describe PagesController do
     end
         
   end
+  
+  describe "GET 'admin'" do
+    describe "for non-users" do
+      it "should deny access" do
+        get :admin
+        response.should redirect_to(login_path)
+      end
+    end
+    
+    describe "for non-admin users" do
+      before(:each) do
+        login_user(Factory(:user))
+      end
+      
+      it "should deny access" do
+        get :admin
+        response.should redirect_to(login_path)
+      end
+    end
+    
+    describe "for admin users" do
+      before(:each) do
+        login_user(Factory(:user, :admin => true))
+      end
+      
+      it "should be success" do
+        get :admin
+        response.should be_success
+      end
+      
+      it "should have the right title" do
+        get :admin
+        response.should have_selector("title", :content => "Site Administration")
+      end
+    end
+  end
 
 end
