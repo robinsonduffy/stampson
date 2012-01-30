@@ -1,0 +1,23 @@
+%table#items-list
+  %thead
+    %tr
+      %th Country
+      %th Item
+      %th Prices
+  %tbody
+    - @countries.each do |country|
+      - scott_numbers = Array.new
+      - country.items.each do |item|
+        - scott_numbers.push item.scott_number
+      - scott_numbers.natural_sort.each do |scott_number|
+        - item = country.items.find_by_scott_number(scott_number)
+        %tr
+          %td= country.name
+          %td= link_to item.scott_number, edit_item_path(item)
+          %td
+            - item.prices.each do |price|
+              %span.price-comma= "#{price.condition}: #{number_to_currency(price.price)}; "
+      %tr
+        %td &nbsp;
+        %td &nbsp;
+        %td &nbsp;

@@ -7,7 +7,7 @@ Stampson::Application.routes.draw do
   get "login" => "sessions#new", :as => "login"
   get "logout" => "sessions#destroy", :as => "logout"
   resources :sessions, :only => [:create]
-  resources :items, :only => [:new, :create, :edit, :update, :destroy]
+  resources :items, :only => [:new, :create, :edit, :update, :destroy, :index]
   resources :countries, :only => [:show]
   match 'countries/:id/buy' => 'countries#buy_list', :as => 'country_buy_list'
 
