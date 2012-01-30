@@ -111,7 +111,9 @@ class ItemsController < ApplicationController
     if(@item.update_attributes(params[:item]))
       #everything checked out
       flash[:success] = 'Item Changed'
-      redirect_to(@item.country) #for now
+      session[:return_to_url] = nil if session[:return_to_url] != items_path
+      redirect_back_or_to(@item.country)
+      session[:return_to_url] = nil
     else
       #we had a problem
       @title = "Edit Item"
@@ -126,8 +128,8 @@ class ItemsController < ApplicationController
   end
   
   def index
+    session[:return_to_url] = items_path
     @title = 'All Items'
-    @items = Item.find(:all, :include => "country", :order => "countries.name")
     @countries = Country.active
   end
 
