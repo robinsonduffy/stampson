@@ -1,0 +1,5 @@
+%form{:target => "_self", :action => "https://www.paypal.com/cgi-bin/webscr", :method => "post", :id => 'view-cart-button'}
+  %input{:type => "hidden", :name => "business", :value => "store@sampsonstamps.com"}
+  %input{:type => "hidden", :name => "cmd", :value => "_cart"}
+  %input{:type => "hidden", :name => "display", :value => "1"}
+  %input{:type => "image", :name => "submit", :src => "https://www.paypal.com/en_US/i/btn/btn_viewcart_LG.gif", :alt => "PayPal - The safer, easier way to pay online"}

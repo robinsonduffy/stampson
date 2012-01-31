@@ -36,3 +36,7 @@ div.flash.success {border-color:#2774dc; background-color:#9bb7dc; color:#2774dc
 table#buy-list {width:100%;}
 table#buy-list .item {text-align:right;}
 table#buy-list .price {text-align:left; border-right:1px solid #d8d8d8;}
+
+/*VIEW CART*/
+#view-cart-button {text-align:right; float:right; margin-top:20px; margin-right:20px;}
+#view-cart-button input {width:107px; height:26px; padding:0; border:0;}
