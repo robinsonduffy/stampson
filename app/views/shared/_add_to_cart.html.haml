@@ -1,0 +1,9 @@
+%form{:method => "post", :action => "https://www.paypal.com/cgi-bin/webscr", :target => "_self"}
+  %input{:type => "hidden", :name => "cmd", :value => "_cart"}
+  %input{:type => "hidden", :name => "add", :value => "1"}
+  %input{:type => "hidden", :name => "business",  :value => "store@sampsonstamps.com"}
+  %input{:type => "hidden", :name => "item_name", :value => "#{item.country.name} #{item.scott_number} #{price.condition}"}
+  %input{:type => "hidden", :name => "amount", :value => "#{price.price.to_s}"}
+  %input{:type => "hidden", :name => "currency_code", :value => "USD"}
+  %input{:type => "hidden", :name => "shopping_url", :value => request.url}
+  %input{:type => "image", :src => "/images/cart1.png", :border => "0", :name => "submit", :alt => "Add to Cart", :width => '23', :height => '18', :class => 'paypal-add-to-cart-img'}

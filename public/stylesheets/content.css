@@ -30,6 +30,7 @@ div.flash.success {border-color:#2774dc; background-color:#9bb7dc; color:#2774dc
 #sell-list ul.item-prices {margin:0; padding:0; list-style:none;}
 #sell-list td.description {font-style:italic; width:65%;}
 #sell-list span.price {font-weight:bold;}
+#sell-list .paypal-add-to-cart-img {width:23px; height:14px; float:left; clear:left; border:0; padding:0;}
 
 /*BUY LISTS*/
 table#buy-list {width:100%;}

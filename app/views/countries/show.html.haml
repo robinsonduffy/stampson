@@ -13,6 +13,7 @@
           %ul.item-prices
             - item.prices.sell.each do |price|
               %li.item-price
+                = render 'shared/add_to_cart', :item => item, :price => price
                 %span.condition="#{price.condition}:" 
                 %span.price= "#{number_to_currency(price.price)}"
         %td.description= item.description
