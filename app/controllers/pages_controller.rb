@@ -8,5 +8,9 @@ class PagesController < ApplicationController
   def admin
     @title = 'Site Administration'
   end
+  
+  def shipping
+    @title = 'Postage & Handling'
+  end
 
 end

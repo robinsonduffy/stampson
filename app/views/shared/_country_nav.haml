@@ -6,3 +6,6 @@
 %ul.avmenu
   - Country.active.buy.each do |country|
     %li= link_to(country.name, country_buy_list_path(country))
+%h2 Information
+%ul.avmenu
+  %li= link_to "Postage & Handling", shipping_path
