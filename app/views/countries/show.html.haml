@@ -1,11 +1,18 @@
-- @scott_numbers_sorted.each do |scott_number|
-  - item = @country.items.find_by_scott_number(scott_number)
-  %div.item-detail
-    %h3.scott_number= (current_user && current_user.admin) ? link_to(item.scott_number, edit_item_path(item.id)) : item.scott_number
-    %p.description= item.description
-    %ul.item-prices
-      - item.prices.sell.each do |price|
-        %li.item-price
-          %span.condition="#{price.condition}:" 
-          %span.price= "#{number_to_currency(price.price)}"
-  
+%table#sell-list
+  %thead
+    %tr
+      %th Item
+      %th Conditions/Prices
+      %th Description
+  %tbody
+    - @scott_numbers_sorted.each do |scott_number|
+      - item = @country.items.find_by_scott_number(scott_number)
+      %tr
+        %td.scott_number= (current_user && current_user.admin) ? link_to(item.scott_number, edit_item_path(item.id)) : item.scott_number
+        %td.item-prices
+          %ul.item-prices
+            - item.prices.sell.each do |price|
+              %li.item-price
+                %span.condition="#{price.condition}:" 
+                %span.price= "#{number_to_currency(price.price)}"
+        %td.description= item.description

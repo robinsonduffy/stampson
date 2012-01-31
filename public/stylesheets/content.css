@@ -24,10 +24,12 @@ div.flash.error {border-color:#fe5454; background-color:#ffcaca; color:#fe5454;}
 div.flash.success {border-color:#2774dc; background-color:#9bb7dc; color:#2774dc;}
 
 /*SELL LISTS*/
-.item-detail {margin-bottom:30px;}
-.item-detail h3.scott_number {border:1px solid #ccc; padding:3px!important; background-color:#f0f0f0;}
-.item-detail .description {margin-left:10px; margin-bottom:0; font-style:italic}
-span.price {font-weight:bold;}
+#sell-list {width:100%}
+#sell-list td {vertical-align:top;}
+#sell-list .scott_number {text-align:right; font-weight:bold;}
+#sell-list ul.item-prices {margin:0; padding:0; list-style:none;}
+#sell-list td.description {font-style:italic}
+#sell-list span.price {font-weight:bold;}
 
 /*BUY LISTS*/
 table#buy-list {width:100%;}
