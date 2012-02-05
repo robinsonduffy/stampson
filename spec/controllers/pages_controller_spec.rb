@@ -3,6 +3,9 @@ require 'spec_helper'
 describe PagesController do
   render_views
   describe "GET 'home'" do
+    before(:each) do
+      Factory(:country, :name => 'Specials')
+    end
     it "should be success" do
       get :home
       response.should be_success

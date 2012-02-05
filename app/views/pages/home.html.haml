@@ -1,1 +1,21 @@
-%p Home Page Stub
+%table#special-items
+  - @items.in_groups_of(2) do |row|
+    %tr
+      -row.each do |item|
+        %td.special-item
+          %h4= (current_user && current_user.admin) ? link_to(item.scott_number, edit_item_path(item.id)) : item.scott_number
+          %p.description= item.description.html_safe
+          %div.add-to-cart
+            %form{:method => "post", :action => "https://www.paypal.com/cgi-bin/webscr", :target => "_self"}
+              %input{:type => "hidden", :name => "cmd", :value => "_cart"}
+              %input{:type => "hidden", :name => "add", :value => "1"}
+              %input{:type => "hidden", :name => "business",  :value => "store@sampsonstamps.com"}
+              %input{:type => "hidden", :name => "item_name", :value => "#{item.country.name} #{item.scott_number}"}
+              %input{:type => "hidden", :name => "amount", :value => "#{item.prices.first.price.to_s}"}
+              %input{:type => "hidden", :name => "currency_code", :value => "USD"}
+              %input{:type => "hidden", :name => "shopping_url", :value => request.url}
+              %input{:type => "image", :src => "https://www.paypal.com/en_US/i/btn/btn_cart_LG.gif", :border => "0", :name => "submit", :alt => "Add to Cart", :width => '120', :height => '26', :class => 'paypal-add-to-cart-button'}
+        %td &nbsp;
+      %tr.blank
+        %td &nbsp;
+        %td &nbsp;

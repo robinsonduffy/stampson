@@ -42,3 +42,12 @@ table#buy-list .price {text-align:left; border-right:1px solid #d8d8d8;}
 /*VIEW CART*/
 #view-cart-button {text-align:right; float:right; margin-top:20px; margin-right:20px;}
 #view-cart-button input {width:107px; height:26px; padding:0; border:0;}
+
+/*SPECIALS*/
+table#special-items {border:0;}
+table#special-items tr.blank td {background:none; border:0;}
+#special-items td {background:none;}
+.special-item {vertical-align:top; background:none; border:1px solid #ccc; padding:0;}
+.special-item p {padding:2px 10px;}
+.special-item .paypal-add-to-cart-button {width:120px; height: 26px; border:0; margin-left:10px;}
+.special-item h4 {font-size:larger; margin:0 0 10px 0; padding:3px 5px; background-image: url("/stylesheets/img/menubg.gif"); font-weight:bold!important;}}

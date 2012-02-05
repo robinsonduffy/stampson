@@ -3,6 +3,8 @@ class PagesController < ApplicationController
   before_filter :require_admin, :only => [:admin]
   
   def home
+    @items = Country.find_by_name("Specials").items
+    @title = 'Special Offers'
   end
   
   def admin
