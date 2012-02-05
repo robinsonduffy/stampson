@@ -1,10 +1,11 @@
 %h2 Sell Lists
 %ul.avmenu
-  - Country.active.sell.each do |country|
+  %li= link_to "Specials", root_path
+  - Country.active.no_specials.sell.each do |country|
     %li= link_to(country.name, country)
 %h2 Buy Lists
 %ul.avmenu
-  - Country.active.buy.each do |country|
+  - Country.active.no_specials.buy.each do |country|
     %li= link_to(country.name, country_buy_list_path(country))
 %h2 Information
 %ul.avmenu
