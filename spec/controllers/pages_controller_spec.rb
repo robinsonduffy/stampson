@@ -22,6 +22,11 @@ describe PagesController do
         response.should have_selector("a", :content => "Login", :href => login_path)
         response.should_not have_selector("a", :content => "Logout", :href => logout_path)
       end
+      
+      it "should have google analytics code" do
+        get :home
+        response.should have_selector("script", :content => "google-analytics.com")
+      end
     end
     
     describe "for logged in users" do
@@ -33,6 +38,11 @@ describe PagesController do
         get :home
         response.should_not have_selector("a", :content => "Login", :href => login_path)
         response.should have_selector("a", :content => "Logout", :href => logout_path)
+      end
+      
+      it "should not have google analytics code" do
+        get :home
+        response.should_not have_selector("script", :content => "google-analytics.com")
       end
     end
         
