@@ -50,4 +50,4 @@ table#special-items tr.blank td {background:none; border:0;}
 .special-item {vertical-align:top; background:none; border:1px solid #ccc; padding:0;}
 .special-item p {padding:2px 10px;}
 .special-item .paypal-add-to-cart-button {width:120px; height: 26px; border:0; margin-left:10px;}
-.special-item h4 {font-size:larger; margin:0 0 10px 0; padding:3px 5px; background-image: url("/stylesheets/img/menubg.gif"); font-weight:bold!important;}}
+.special-item h4 {font-size:larger; margin:0 0 10px 0; padding:3px 5px; background-image: url("/stylesheets/img/menubg.gif"); font-weight:bold!important;}
