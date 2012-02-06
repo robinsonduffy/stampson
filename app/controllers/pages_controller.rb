@@ -14,5 +14,9 @@ class PagesController < ApplicationController
   def shipping
     @title = 'Postage & Handling'
   end
+  
+  def about
+    @title = 'About Us'
+  end
 
 end

@@ -16,8 +16,6 @@
         %h1= link_to("Sampson Stamps", root_path)
       %div#leftside
         = render("shared/country_nav")
-        %div#announce
-          %h2 Announcement
       %div#content
         %h1.title= (@title.nil?) ? @base_title : @title
         %div#flash-messages

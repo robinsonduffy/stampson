@@ -4,6 +4,7 @@ Stampson::Application.routes.draw do
   root :to => "pages#home"
   match "admin" => 'pages#admin', :as => 'admin'
   match "shipping" => 'pages#shipping'
+  match "about" => 'pages#about'
   
   get "login" => "sessions#new", :as => "login"
   get "logout" => "sessions#destroy", :as => "logout"
